@@ -51,7 +51,7 @@ bool Cluster::EqualPrevCenter()
 
 void InitialFrstCenters(vector<Cluster> clusters, vector<POINT> points)
 {
-
+	
 }
 void Attach(int countClusters, vector<Cluster> clusters, vector<POINT> points)
 {
