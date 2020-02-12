@@ -19,7 +19,7 @@ vector<POINT> initData(string file)
 int main()
 {
 	vector<POINT> vpoints = initData("data.txt");
-	int k;
+	size_t k;
 	cout << "Enter the number clusters: ";
 	cin >> k;
 	vector<Cluster> clusters(k);

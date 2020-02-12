@@ -32,7 +32,9 @@ void Cluster::SetCenter()
 		tmpX += points[i].x;
 		tmpY += points[i].y;
 	}
-	prevCenter = center;
+	prevCenter.human = center.human;
+	prevCenter.x = center.x;
+	prevCenter.y = center.y;
 	center.human = "not human";
 	center.x = tmpX / points.size(); 
 	center.y = tmpY / points.size();
@@ -52,24 +54,39 @@ bool Cluster::EqualPrevCenter()
 {
 	return (center == prevCenter ? true : false);
 }
-
-void InitialFrstCenters(vector<Cluster> clusters, vector<POINT> points)
+double LenthToCluster(POINT c, POINT p)
+{
+	return (sqrt(pow(c.x - p.x, 2) + pow(c.y - p.y, 2)));
+}
+void InitialFrstCenters(vector<Cluster> &clusters, vector<POINT> points)
 {
 	for (size_t i = 0; i < clusters.size(); i++)
 	{
 		clusters[i].SetCenterHandle(points[i]);
 	}
 }
-void Attach(int countClusters, vector<Cluster> clusters, vector<POINT> points)
+void Attach(size_t countClusters, vector<Cluster>& clusters, vector<POINT> points)
 {
-	for (auto cl : clusters)
+	double length;
+	Cluster* pCluster = &clusters[0];
+	for (auto &cl : clusters)
 		cl.Clear();
 	for (size_t i = 0; i < points.size(); i++)
 	{
-
+		length = UINT_MAX;
+		for (size_t j = 0; j < clusters.size(); j++) //for (auto cl : clusters)
+		{
+			double tmpLength = LenthToCluster(clusters[j].GetCenter(), points[i]);
+			if (tmpLength < length)
+			{
+				length = tmpLength;
+				pCluster = &clusters[j];
+			}
+		}
+		pCluster->Add(points[i]);
 	}
 }
-void Start(int countClusters, vector<Cluster> clusters, vector<POINT> points)
+void Start(size_t countClusters, vector<Cluster>& clusters, vector<POINT> points)
 {
 	size_t check;
 	InitialFrstCenters(clusters, points);

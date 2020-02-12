@@ -37,6 +37,7 @@ public:
 };
 
 bool operator == (POINT, POINT);
-void InitialFrstCenters(vector<Cluster> clusters, vector<POINT> points);
-void Attach(int countClusters, vector<Cluster> clusters, vector<POINT> points);
-void Start(int countClusters, vector<Cluster> clusters, vector<POINT> points);
+double LenthToCluster(POINT, POINT);
+void InitialFrstCenters(vector<Cluster>&, vector<POINT>);
+void Attach(size_t, vector<Cluster>&, vector<POINT>);
+void Start(size_t, vector<Cluster>&, vector<POINT>);
