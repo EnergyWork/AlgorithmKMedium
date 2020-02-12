@@ -30,6 +30,7 @@ public:
 	POINT GetCenter();
 	POINT GetPrevCenter();
 	void SetCenter();
+	void SetCenterHandle(POINT);
 	size_t Size();
 	bool EqualPrevCenter();
 	POINT& at(unsigned i);

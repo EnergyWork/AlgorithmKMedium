@@ -24,5 +24,6 @@ int main()
 	cin >> k;
 	vector<Cluster> clusters(k);
 	Start(k, clusters, vpoints);
+	system("pause");
 	return 0;
 }

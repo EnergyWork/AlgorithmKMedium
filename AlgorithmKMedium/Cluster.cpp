@@ -37,6 +37,10 @@ void Cluster::SetCenter()
 	center.x = tmpX / points.size(); 
 	center.y = tmpY / points.size();
 }
+void Cluster::SetCenterHandle(POINT point)
+{
+	center = point;
+}
 bool operator == (POINT p1,POINT p2)
 {
 	if (p1.x == p2.x && p1.y == p2.y)
@@ -51,11 +55,19 @@ bool Cluster::EqualPrevCenter()
 
 void InitialFrstCenters(vector<Cluster> clusters, vector<POINT> points)
 {
-	
+	for (size_t i = 0; i < clusters.size(); i++)
+	{
+		clusters[i].SetCenterHandle(points[i]);
+	}
 }
 void Attach(int countClusters, vector<Cluster> clusters, vector<POINT> points)
 {
+	for (auto cl : clusters)
+		cl.Clear();
+	for (size_t i = 0; i < points.size(); i++)
+	{
 
+	}
 }
 void Start(int countClusters, vector<Cluster> clusters, vector<POINT> points)
 {
