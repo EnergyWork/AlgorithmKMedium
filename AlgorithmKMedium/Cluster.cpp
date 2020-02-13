@@ -43,6 +43,19 @@ void Cluster::SetCenterHandle(POINT point)
 {
 	center = point;
 }
+void Cluster::PrintCluster()
+{
+	cout << "Center: " << center.x << " " << center.y << endl << "points: " << endl;
+	for (auto p : points)
+	{
+		cout << p.human << " " << p.x << " " << p.y << endl;
+	}
+	cout << endl;
+}
+void PrintLine()
+{
+	cout << "================================================" << endl;
+}
 bool operator == (POINT p1,POINT p2)
 {
 	if (p1.x == p2.x && p1.y == p2.y)
@@ -74,7 +87,7 @@ void Attach(size_t countClusters, vector<Cluster>& clusters, vector<POINT> point
 	for (size_t i = 0; i < points.size(); i++)
 	{
 		length = UINT_MAX;
-		for (size_t j = 0; j < clusters.size(); j++) //for (auto cl : clusters)
+		for (size_t j = 0; j < clusters.size(); j++) //for (auto &cl : clusters)
 		{
 			double tmpLength = LenthToCluster(clusters[j].GetCenter(), points[i]);
 			if (tmpLength < length)
@@ -99,8 +112,11 @@ void Start(size_t countClusters, vector<Cluster>& clusters, vector<POINT> points
 			clusters[i].SetCenter();
 			if (clusters[i].EqualPrevCenter())
 				check++;
-		}	
+		}
 		if (check == countClusters)
 			return;
+		for (auto cl : clusters)
+			cl.PrintCluster();
+		PrintLine();
 	}
 }

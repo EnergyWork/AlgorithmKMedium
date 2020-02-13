@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -34,6 +35,7 @@ public:
 	size_t Size();
 	bool EqualPrevCenter();
 	POINT& at(unsigned i);
+	void PrintCluster();
 };
 
 bool operator == (POINT, POINT);

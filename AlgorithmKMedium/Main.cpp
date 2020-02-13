@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include "Cluster.h"
 using namespace std;
@@ -18,6 +17,7 @@ vector<POINT> initData(string file)
 
 int main()
 {
+	setlocale(0, "rus");
 	vector<POINT> vpoints = initData("data.txt");
 	size_t k;
 	cout << "Enter the number clusters: ";
